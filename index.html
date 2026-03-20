@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facu Lo Importa — Importá con Claridad, Costos Definidos y Riesgo Controlado</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --orange: #FF5C00;
+  --orange-light: #FF7A2E;
+  --orange-dark: #E04F00;
+  --black: #0A0A0A;
+  --black-light: #1A1A1A;
+  --white: #FAFAFA;
+  --gray: #888;
+  --gray-light: #C4C4C4;
+  --gray-bg: #F2F2F2;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========== NAVBAR ========== */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 40px;
+  background: rgba(10,10,10,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,92,0,0.15);
+}
+.navbar-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem; letter-spacing: 2px; color: var(--white);
+  text-decoration: none;
+}
+.navbar-logo span { color: var(--orange); }
+.navbar-cta {
+  padding: 10px 28px; background: var(--orange); color: var(--white);
+  font-weight: 700; font-size: 0.85rem; text-transform: uppercase;
+  letter-spacing: 1px; border: none; border-radius: 6px; cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.2s;
+}
+.navbar-cta:hover { background: var(--orange-light); transform: translateY(-1px); }
+
+/* ========== HERO ========== */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+  padding: 120px 40px 80px;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 30%, rgba(255,92,0,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(255,92,0,0.06) 0%, transparent 50%);
+}
+.hero::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--orange), transparent);
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,92,0,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,92,0,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 900px; text-align: center;
+}
+.hero-badge {
+  display: inline-block;
+  padding: 6px 20px;
+  border: 1px solid var(--orange);
+  border-radius: 100px;
+  color: var(--orange);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  animation: fadeUp 0.8s ease both;
+}
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  line-height: 0.95;
+  color: var(--white);
+  letter-spacing: -1px;
+  animation: fadeUp 0.8s 0.15s ease both;
+}
+.hero h1 .accent { color: var(--orange); }
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--gray-light);
+  max-width: 620px; margin: 28px auto 0;
+  line-height: 1.7;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+.hero-sub strong { color: var(--white); font-weight: 600; }
+.hero-buttons {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  margin-top: 44px;
+  animation: fadeUp 0.8s 0.45s ease both;
+}
+.btn-primary {
+  padding: 16px 40px; background: var(--orange); color: var(--white);
+  font-weight: 700; font-size: 1rem; border: none; border-radius: 8px;
+  cursor: pointer; text-decoration: none; text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: all 0.3s;
+  box-shadow: 0 8px 30px rgba(255,92,0,0.35);
+}
+.btn-primary:hover {
+  background: var(--orange-light);
+  box-shadow: 0 12px 40px rgba(255,92,0,0.45);
+  transform: translateY(-2px);
+}
+.btn-secondary {
+  padding: 16px 40px; background: transparent;
+  color: var(--white); font-weight: 600; font-size: 1rem;
+  border: 2px solid rgba(255,255,255,0.2); border-radius: 8px;
+  cursor: pointer; text-decoration: none; letter-spacing: 0.5px;
+  transition: all 0.3s;
+}
+.btn-secondary:hover {
+  border-color: var(--orange); color: var(--orange);
+}
+.hero-proof {
+  display: flex; gap: 48px; justify-content: center; flex-wrap: wrap;
+  margin-top: 56px;
+  animation: fadeUp 0.8s 0.6s ease both;
+}
+.hero-proof-item {
+  text-align: center;
+}
+.hero-proof-item .number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem; color: var(--orange); line-height: 1;
+}
+.hero-proof-item .label {
+  font-size: 0.78rem; color: var(--gray);
+  text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px;
+}
+
+/* ========== PAIN SECTION ========== */
+.pain {
+  padding: 100px 40px;
+  background: var(--white);
+}
+.pain-inner {
+  max-width: 1000px; margin: 0 auto;
+}
+.section-tag {
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--orange); margin-bottom: 16px;
+}
+.pain h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  line-height: 1;
+  color: var(--black);
+  max-width: 700px;
+  margin-bottom: 48px;
+}
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+.pain-card {
+  padding: 32px;
+  background: var(--gray-bg);
+  border-radius: 12px;
+  border-left: 4px solid var(--orange);
+  transition: transform 0.3s;
+}
+.pain-card:hover { transform: translateY(-4px); }
+.pain-card .icon {
+  font-size: 1.6rem; margin-bottom: 12px;
+}
+.pain-card h3 {
+  font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;
+}
+.pain-card p {
+  font-size: 0.92rem; color: var(--gray); line-height: 1.6;
+}
+
+/* ========== SOLUTION / METHOD ========== */
+.method {
+  padding: 100px 40px;
+  background: var(--black);
+  position: relative;
+}
+.method::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(255,92,0,0.08) 0%, transparent 60%);
+}
+.method-inner {
+  max-width: 1000px; margin: 0 auto; position: relative; z-index: 2;
+}
+.method .section-tag { color: var(--orange); }
+.method h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  line-height: 1;
+  color: var(--white);
+  max-width: 700px;
+  margin-bottom: 56px;
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 32px;
+}
+.step {
+  position: relative;
+  padding: 36px 28px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+.step:hover {
+  background: rgba(255,92,0,0.06);
+  border-color: rgba(255,92,0,0.3);
+}
+.step-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.5rem; color: var(--orange); line-height: 1;
+  opacity: 0.3; margin-bottom: 8px;
+}
+.step h3 {
+  font-size: 1.05rem; font-weight: 700; color: var(--white);
+  margin-bottom: 10px;
+}
+.step p {
+  font-size: 0.88rem; color: var(--gray-light); line-height: 1.6;
+}
+
+/* ========== WHO IS FACU ========== */
+.about {
+  padding: 100px 40px;
+  background: var(--white);
+}
+.about-inner {
+  max-width: 1000px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 64px;
+  align-items: center;
+}
+.about-visual {
+  position: relative;
+}
+.about-img-placeholder {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: var(--black);
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.about-img-placeholder::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,92,0,0.15), transparent);
+}
+.about-img-placeholder span {
+  color: var(--gray); font-size: 0.85rem; position: relative; z-index: 1;
+  text-align: center; padding: 20px; line-height: 1.6;
+}
+.about-experience-badge {
+  position: absolute; bottom: -20px; right: -20px;
+  background: var(--orange);
+  color: var(--white);
+  padding: 20px 28px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(255,92,0,0.4);
+}
+.about-experience-badge .big {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.8rem; line-height: 1;
+}
+.about-experience-badge .small {
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 2px;
+  margin-top: 2px;
+}
+.about-text .section-tag { margin-bottom: 16px; }
+.about-text h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1;
+  margin-bottom: 24px;
+}
+.about-text p {
+  font-size: 0.95rem; color: #555; line-height: 1.8;
+  margin-bottom: 16px;
+}
+.about-text p strong { color: var(--black); }
+.about-bullets {
+  list-style: none; margin-top: 24px;
+}
+.about-bullets li {
+  padding: 8px 0;
+  font-size: 0.92rem;
+  font-weight: 500;
+  display: flex; align-items: center; gap: 12px;
+}
+.about-bullets li::before {
+  content: '▸';
+  color: var(--orange); font-size: 1.2rem; font-weight: 700;
+}
+
+/* ========== SOCIAL PROOF ========== */
+.proof {
+  padding: 80px 40px;
+  background: var(--gray-bg);
+}
+.proof-inner {
+  max-width: 1000px; margin: 0 auto; text-align: center;
+}
+.proof h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 48px;
+}
+.testimonials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  text-align: left;
+}
+.testimonial {
+  background: var(--white);
+  padding: 28px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: transform 0.3s;
+}
+.testimonial:hover { transform: translateY(-3px); }
+.testimonial .stars { color: var(--orange); font-size: 0.9rem; margin-bottom: 12px; letter-spacing: 2px; }
+.testimonial p {
+  font-size: 0.9rem; line-height: 1.65; color: #444;
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.testimonial .author {
+  font-size: 0.8rem; font-weight: 700; color: var(--black);
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ========== FAQ ========== */
+.faq {
+  padding: 100px 40px;
+  background: var(--white);
+}
+.faq-inner {
+  max-width: 720px; margin: 0 auto;
+}
+.faq h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  text-align: center;
+  margin-bottom: 48px;
+}
+.faq-item {
+  border-bottom: 1px solid #E8E8E8;
+}
+.faq-question {
+  width: 100%; padding: 20px 0;
+  background: none; border: none;
+  font-size: 1rem; font-weight: 600;
+  text-align: left; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--black);
+  transition: color 0.3s;
+}
+.faq-question:hover { color: var(--orange); }
+.faq-question .toggle {
+  font-size: 1.5rem; color: var(--orange); font-weight: 300;
+  transition: transform 0.3s;
+}
+.faq-item.open .faq-question .toggle { transform: rotate(45deg); }
+.faq-answer {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+}
+.faq-item.open .faq-answer {
+  max-height: 300px;
+  padding-bottom: 20px;
+}
+.faq-answer p {
+  font-size: 0.92rem; color: #555; line-height: 1.7;
+}
+
+/* ========== FORM ========== */
+.form-section {
+  padding: 100px 40px;
+  background: var(--black);
+  position: relative;
+}
+.form-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 40% at 50% 100%, rgba(255,92,0,0.12) 0%, transparent 60%);
+}
+.form-inner {
+  max-width: 600px; margin: 0 auto;
+  position: relative; z-index: 2;
+  text-align: center;
+}
+.form-inner .section-tag { color: var(--orange); }
+.form-inner h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.form-inner .subtitle {
+  color: var(--gray-light); font-size: 0.95rem;
+  margin-bottom: 40px; line-height: 1.6;
+}
+.form-card {
+  background: var(--black-light);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 32px;
+  text-align: left;
+  overflow: hidden;
+}
+.form-note {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--gray);
+  margin-top: 16px;
+}
+
+
+
+/* ========== FOOTER ========== */
+.footer {
+  padding: 40px;
+  background: var(--black);
+  text-align: center;
+  border-top: 1px solid rgba(255,92,0,0.15);
+}
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem; color: var(--white); letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+.footer-logo span { color: var(--orange); }
+.footer p {
+  font-size: 0.78rem; color: var(--gray);
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .navbar { padding: 12px 20px; }
+  .navbar-logo { font-size: 1.2rem; }
+  .navbar-cta { padding: 8px 18px; font-size: 0.75rem; }
+  .hero { padding: 100px 20px 60px; }
+  .hero-proof { gap: 28px; }
+  .pain, .method, .about, .proof, .faq, .form-section, .bio-section {
+    padding: 60px 20px;
+  }
+  .about-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .about-experience-badge { bottom: -12px; right: 10px; }
+  .form-card { padding: 28px 20px; }
+  .steps { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .steps { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="#" class="navbar-logo">FACU <span>LO IMPORTA</span></a>
+  <a href="#formulario" class="navbar-cta">Quiero Importar</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Consultoría en Comercio Exterior</div>
+    <h1>IMPORTÁ TU PRIMER PRODUCTO CON <span class="accent">CLARIDAD, COSTOS DEFINIDOS</span> Y RIESGO CONTROLADO</h1>
+    <p class="hero-sub">Incluso si nunca importaste. Te acompaño de punta a punta: desde elegir proveedor hasta que la mercadería esté <strong>nacionalizada en Argentina</strong>.</p>
+    <div class="hero-buttons">
+      <a href="#formulario" class="btn-primary">Aplicar Ahora</a>
+      <a href="#metodo" class="btn-secondary">¿Cómo funciona?</a>
+    </div>
+    <div class="hero-proof">
+      <div class="hero-proof-item">
+        <div class="number">+15</div>
+        <div class="label">Años de experiencia</div>
+      </div>
+      <div class="hero-proof-item">
+        <div class="number">+7</div>
+        <div class="label">Años con empresa propia</div>
+      </div>
+      <div class="hero-proof-item">
+        <div class="number">100%</div>
+        <div class="label">Punta a punta</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="pain">
+  <div class="pain-inner reveal">
+    <div class="section-tag">El Problema Real</div>
+    <h2>LA PRIMERA IMPORTACIÓN NO SE CAE POR FALTA DE PRODUCTO. SE CAE POR DECISIONES SIN VALIDAR.</h2>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="icon">💸</div>
+        <h3>“No sé cómo pagarle al proveedor”</h3>
+        <p>El miedo a transferir plata afuera sin saber si está todo controlado frena al 80% de los que quieren arrancar.</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon">🚢</div>
+        <h3>“Me da miedo la aduana”</h3>
+        <p>No validar si tu mercadería puede entrar a Argentina antes de comprar es el error más caro que podés cometer.</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon">📊</div>
+        <h3>“Los costos se me fueron al cielo”</h3>
+        <p>Estimar "a ojo" y no armar un presupuesto punta a punta convierte una buena idea en una operación que no cierra.</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon">😰</div>
+        <h3>“Googleo, pregunto, pero no avanzo”</h3>
+        <p>Información suelta hay de sobra. Lo que te falta es un mapa confiable aplicado a tu caso específico.</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon">⏱️</div>
+        <h3>“No sé cuánto tarda realmente”</h3>
+        <p>Barco, avión, fabricación, personalización. Sin tiempos reales, no podés planificar ni la venta ni el flujo de plata.</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon">🤷</div>
+        <h3>“No sé si conviene antes de mandarme”</h3>
+        <p>Querés claridad antes de arriesgar. Y tenés razón: la claridad es lo primero que necesitás para avanzar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section class="method" id="metodo">
+  <div class="method-inner reveal">
+    <div class="section-tag">Ruta de Importación Segura</div>
+    <h2>NO TE ENSEÑO TEORÍA. TE LO BAJO A TIERRA Y LO EJECUTAMOS CON MÉTODO.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">01</div>
+        <h3>Validación Aduanera Previa</h3>
+        <p>Antes de que pagues un solo dólar, confirmamos que tu mercadería puede entrar a Argentina sin quilombos.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">02</div>
+        <h3>Presupuesto Punta a Punta</h3>
+        <p>Desde la compra en origen hasta la entrega en tu puerta. Sin costos sorpresa, sin estimar "a ojo".</p>
+      </div>
+      <div class="step">
+        <div class="step-number">03</div>
+        <h3>Pagos por Etapas</h3>
+        <p>Estructuramos el pago para bajar tu riesgo: parte al inicio y saldo cuando la mercadería llega y se nacionaliza.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">04</div>
+        <h3>Seguro Total + Seguimiento</h3>
+        <p>Tu carga viaja asegurada. Y vos sabés en todo momento qué está pasando, con reuniones y actualizaciones por etapa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-inner reveal">
+    <div class="about-visual">
+      <div class="about-img-placeholder">
+        <span>[ Foto de Facundo ]<br>Reemplazar con imagen profesional</span>
+      </div>
+      <div class="about-experience-badge">
+        <div class="big">+15</div>
+        <div class="small">Años en Comex</div>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="section-tag">¿Quién soy?</div>
+      <h2>SOY FACUNDO. Y HACE MÁS DE 15 AÑOS QUE VIVO DEL COMERCIO EXTERIOR.</h2>
+      <p>Tuve mi propia empresa de Comex durante 7 años. Me reinventé muchas veces y aprendí lo que no se aprende en un curso: <strong>cómo funciona el día a día real de importar en Argentina</strong>.</p>
+      <p>Hoy, con mi marca personal, ayudo a personas que quieren importar por primera vez a hacerlo con <strong>claridad, costos definidos y riesgo controlado</strong>. Sin humo, sin cursos vacíos, sin promesas mágicas.</p>
+      <ul class="about-bullets">
+        <li>Consultoría personalizada aplicada a tu caso</li>
+        <li>Gestión de proveedores y negociación en China</li>
+        <li>Logística y nacionalización punta a punta</li>
+        <li>Modalidad "Llave en mano" para no-importadores</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="proof">
+  <div class="proof-inner reveal">
+    <h2>LO QUE DICE LA COMUNIDAD</h2>
+    <div class="testimonials">
+      <div class="testimonial">
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <p>“Muy claro, como para tener una noción certera de lo que es importar hoy día. Información de verdadera calidad.”</p>
+        <div class="author">— Comunidad YouTube</div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <p>“La claridad y transparencia en la explicación son buenísimas. La sencillez y el conocimiento ayudan a los que no estamos en el tema.”</p>
+        <div class="author">— Comunidad YouTube</div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <p>“De lo más serio que encontré. Explica todo muy didáctico y bien explicado. Un profesional en toda regla.”</p>
+        <div class="author">— Comunidad YouTube</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="faq-inner reveal">
+    <h2>PREGUNTAS FRECUENTES</h2>
+    <div class="faq-item">
+      <button class="faq-question">¿Necesito ser importador inscrito para arrancar? <span class="toggle">+</span></button>
+      <div class="faq-answer"><p>No. Si no sos importador, podemos trabajar con la modalidad "Llave en mano": importo a mi nombre y te facturo como compra local en Argentina. Después, si decidís importar con regularidad, te conviene inscribirte y ahorrás costos.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">¿Cuánto es el mínimo para importar? <span class="toggle">+</span></button>
+      <div class="faq-answer"><p>Trabajamos con operaciones desde USD 1.000 en adelante. Dependiendo del producto, rubro y modalidad (courier o marítimo), definimos juntos cuál es la inversión óptima para tu caso.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">¿Y si no sé qué producto traer? <span class="toggle">+</span></button>
+      <div class="faq-answer"><p>También te puedo ayudar. En la primera charla evaluamos tu situación, capital disponible y preferencias. Te sugiero rubros y productos con criterio, no al azar. Si no conviene, te lo digo.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">¿Cómo es la primera charla? <span class="toggle">+</span></button>
+      <div class="faq-answer"><p>Completás el formulario y coordinamos una charla donde te doy un pantallazo general de tu caso: qué se puede hacer, costos estimados, tiempos y próximos pasos. Sin compromiso.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">¿Qué pasa si mi mercadería tiene problemas en aduana? <span class="toggle">+</span></button>
+      <div class="faq-answer"><p>Justamente por eso hacemos validación aduanera previa. Antes de que pagues, confirmamos que no hay impedimentos. Además, la carga viaja asegurada. Si pasa lo impensado, estás cubierto.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">¿Cuánto tarda una importación? <span class="toggle">+</span></button>
+      <div class="faq-answer"><p>Depende de la modalidad. Por avión: 7 a 15 días desde que embarca. Por barco: 45 a 60 días de tránsito. A eso se suma el tiempo de fabricación o stock del proveedor. Todo te lo aclaro en el presupuesto punta a punta.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="formulario">
+  <div class="form-inner reveal">
+    <div class="section-tag">Primer Paso</div>
+    <h2>VALIDÁ TU CASO. SIN COMPROMISO.</h2>
+    <p class="subtitle">Completá el formulario y coordinamos una charla donde te doy claridad real sobre tu situación.</p>
+    <div class="form-card">
+      <iframe
+        src="https://api.leadconnectorhq.com/widget/form/SljPEuS1WhEljHQvdbra"
+        style="width:100%;height:669px;border:none;border-radius:3px"
+        id="inline-SljPEuS1WhEljHQvdbra" 
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-trigger-value=""
+        data-activation-type="alwaysActivated"
+        data-activation-value=""
+        data-deactivation-type="neverDeactivate"
+        data-deactivation-value=""
+        data-form-name="Formulario Leads"
+        data-height="669"
+        data-layout-iframe-id="inline-SljPEuS1WhEljHQvdbra"
+        data-form-id="SljPEuS1WhEljHQvdbra"
+        title="Formulario Leads"
+      ></iframe>
+      <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+      <p class="form-note">Charla de diagnóstico sin costo. Solo tomamos casos que realmente podamos ayudar.</p>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">FACU <span>LO IMPORTA</span></div>
+  <p>© 2026 FacuLoImporta.com — Todos los derechos reservados</p>
+</footer>
+
+<script>
+// FAQ Accordion
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+
+</script>
+</body>
+</html>
