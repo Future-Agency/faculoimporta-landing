@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¡Gracias! — Facu Lo Importa</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --orange: #FF5C00;
+  --orange-light: #FF7A2E;
+  --black: #0A0A0A;
+  --black-light: #1A1A1A;
+  --white: #FAFAFA;
+  --gray: #888;
+  --gray-light: #C4C4C4;
+  --green-wa: #25D366;
+  --green-wa-hover: #1ebe5d;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--black);
+  color: var(--white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.navbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 40px;
+  background: rgba(10,10,10,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,92,0,0.15);
+}
+.navbar-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem; letter-spacing: 2px; color: var(--white);
+  text-decoration: none;
+}
+.navbar-logo span { color: var(--orange); }
+.main {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center;
+  padding: 60px 24px;
+  position: relative;
+}
+.main::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 40%, rgba(255,92,0,0.1) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 80% 80%, rgba(37,211,102,0.06) 0%, transparent 50%);
+}
+.grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,92,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,92,0,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.card {
+  position: relative; z-index: 2;
+  max-width: 560px; width: 100%;
+  text-align: center;
+}
+.check-wrap { width: 96px; height: 96px; margin: 0 auto 32px; position: relative; }
+.check-circle {
+  width: 96px; height: 96px;
+  border-radius: 50%;
+  background: var(--orange);
+  display: flex; align-items: center; justify-content: center;
+  animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  box-shadow: 0 0 60px rgba(255,92,0,0.35);
+}
+.check-circle svg { width: 44px; height: 44px; stroke: var(--white); stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.check-circle svg path { stroke-dasharray: 60; stroke-dashoffset: 60; animation: drawCheck 0.5s 0.5s ease forwards; }
+@keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+@keyframes drawCheck { to { stroke-dashoffset: 0; } }
+.card h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1; letter-spacing: -0.5px; animation: fadeUp 0.7s 0.3s ease both; }
+.card h1 .accent { color: var(--orange); }
+.card .subtitle { font-size: clamp(0.95rem, 2vw, 1.1rem); color: var(--gray-light); line-height: 1.7; margin-top: 20px; max-width: 440px; margin-left: auto; margin-right: auto; animation: fadeUp 0.7s 0.45s ease both; }
+.card .subtitle strong { color: var(--white); }
+.divider { width: 60px; height: 3px; background: var(--orange); border-radius: 3px; margin: 36px auto; animation: fadeUp 0.7s 0.55s ease both; }
+.wa-block { animation: fadeUp 0.7s 0.65s ease both; }
+.wa-block p { font-size: 0.95rem; color: var(--gray-light); margin-bottom: 24px; line-height: 1.6; }
+.wa-btn { display: inline-flex; align-items: center; gap: 12px; padding: 18px 40px; background: var(--green-wa); color: var(--white); font-weight: 700; font-size: 1.05rem; border: none; border-radius: 12px; cursor: pointer; text-decoration: none; letter-spacing: 0.5px; transition: all 0.3s; box-shadow: 0 8px 30px rgba(37,211,102,0.35); }
+.wa-btn:hover { background: var(--green-wa-hover); box-shadow: 0 12px 40px rgba(37,211,102,0.5); transform: translateY(-2px); }
+.wa-btn svg { width: 24px; height: 24px; fill: var(--white); }
+.next-steps { margin-top: 48px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; animation: fadeUp 0.7s 0.8s ease both; }
+.next-step { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 20px 24px; text-align: center; flex: 1; min-width: 140px; max-width: 180px; transition: border-color 0.3s; }
+.next-step:hover { border-color: rgba(255,92,0,0.3); }
+.next-step .step-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--orange); line-height: 1; opacity: 0.5; }
+.next-step .step-text { font-size: 0.78rem; color: var(--gray-light); margin-top: 6px; line-height: 1.4; }
+.back-link { margin-top: 40px; animation: fadeUp 0.7s 0.9s ease both; }
+.back-link a { color: var(--gray); font-size: 0.82rem; text-decoration: none; letter-spacing: 0.5px; transition: color 0.3s; }
+.back-link a:hover { color: var(--orange); }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
+.footer { padding: 32px 40px; text-align: center; border-top: 1px solid rgba(255,92,0,0.1); }
+.footer p { font-size: 0.75rem; color: var(--gray); }
+@media (max-width: 480px) {
+  .navbar { padding: 12px 20px; }
+  .navbar-logo { font-size: 1.2rem; }
+  .main { padding: 40px 20px; }
+  .next-steps { flex-direction: column; align-items: center; }
+  .next-step { max-width: 100%; }
+  .wa-btn { width: 100%; justify-content: center; padding: 16px 28px; }
+}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<a href="/" class="navbar-logo">FACU <span>LO IMPORTA</span></a>
+</nav>
+<main class="main">
+<div class="grid-bg"></div>
+<div class="card">
+<div class="check-wrap">
+<div class="check-circle">
+<svg viewBox="0 0 44 44"><path d="M10 22 L19 31 L34 13"/></svg>
+</div>
+</div>
+<h1>¡GRACIAS POR <span class="accent">DAR EL PRIMER PASO</span>!</h1>
+<p class="subtitle">Recibimos tu información. En las próximas <strong>24-48 horas hábiles</strong> nos ponemos en contacto para coordinar tu charla de diagnóstico.</p>
+<div class="divider"></div>
+<div class="wa-block">
+<p>¿Querés avanzar más rápido?<br>Escribinos directo por WhatsApp y agilizamos el proceso.</p>
+<a href="https://wa.me/541136906690?text=Hola%20Facu!%20Acabo%20de%20completar%20el%20formulario%20en%20la%20web.%20Quiero%20importar!" class="wa-btn" target="_blank" rel="noopener">
+<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+Escribime por WhatsApp
+</a>
+</div>
+<div class="next-steps">
+<div class="next-step"><div class="step-num">01</div><div class="step-text">Revisamos tu caso</div></div>
+<div class="next-step"><div class="step-num">02</div><div class="step-text">Te contactamos</div></div>
+<div class="next-step"><div class="step-num">03</div><div class="step-text">Charla de diagnóstico</div></div>
+</div>
+<div class="back-link"><a href="/">← Volver al inicio</a></div>
+</div>
+</main>
+<footer class="footer">
+<p>© 2026 FacuLoImporta.com — Todos los derechos reservados</p>
+</footer>
+</body>
+</html>
